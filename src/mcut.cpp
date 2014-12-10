@@ -50,6 +50,5 @@ int MCUT::run(std::ostream &description) const
 
 int main(int argc, char* argv[])
 {
-	int i = static_cast<int>(2.5);
 	return MCUT::instance->run(std::cout);
 }
