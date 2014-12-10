@@ -82,5 +82,5 @@ private:
  @param f identifier
  @param ... test body
 */
-#define TEST_CASE(f, ...) MCUT::TestCase f(#f, [] (bool & rv) __VA_ARGS__)
+#define TEST_CASE(f, ...) MCUT::TestCase MCUT_TEST_CASE_ ## f(#f, [] (bool & rv) __VA_ARGS__)
 
