@@ -28,7 +28,7 @@ class MCUT {
 
 public:
 	/** Current instance */
-	static MCUT *instance;
+	static MCUT *instance();
 
 
 	/** Update instance when constructed */
@@ -67,7 +67,7 @@ protected:
 	std::vector<TestCase> tests;
 
 private:
-	static MCUT defaultInstance;
+	static MCUT *currentInstance;
 	MCUT *previousInstance;
 };
 

@@ -1,22 +1,29 @@
 #include "../mcut.h"
 
-MCUT *MCUT::instance = nullptr;
-MCUT MCUT::defaultInstance;
+MCUT *MCUT::currentInstance = nullptr;
+
+
+MCUT *MCUT::instance()
+{
+	static MCUT defaultInstance;
+
+	return currentInstance;
+}
 
 MCUT::MCUT()
 {
-	previousInstance = instance;
-	instance = this;
+	previousInstance = currentInstance;
+	currentInstance = this;
 }
 
 MCUT::~MCUT()
 {
-	instance = previousInstance;
+	currentInstance = previousInstance;
 }
 
 MCUT::TestCase::TestCase(const std::string &n, std::function < void(bool & rv) > t) : name(n), test(t)
 {
-	MCUT::instance->tests.push_back(*this);
+	MCUT::instance()->tests.push_back(*this);
 }
 
 int MCUT::run(std::ostream &description) const
@@ -50,5 +57,5 @@ int MCUT::run(std::ostream &description) const
 
 int main(int argc, char* argv[])
 {
-	return MCUT::instance->run(std::cout);
+	return MCUT::instance()->run(std::cout);
 }
