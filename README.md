@@ -22,7 +22,7 @@ TEST_CASE(duffs_device, {
   size_t count = 30;
   
 
-	register n = (count + 7) / 8;
+	size_t n = (count + 7) / 8;
 	switch (count % 8) {
 	case 0: do { *to++ = *from++;
 	case 7:      *to++ = *from++;
